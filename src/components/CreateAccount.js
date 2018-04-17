@@ -11,7 +11,7 @@ class CreateAccount extends Component {
             zipcode = 0,
         }
         this.handleChange = this.handleChange.bind(this)
-        this.showSubmit= this.handleSubmit.bind(this)
+        this.handleSubmit= this.handleSubmit.bind(this)
     }
 
     render() {
