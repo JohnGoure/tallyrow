@@ -1,17 +1,25 @@
 import React, { Component } from "react"
 
-class CreateAccount extends Component {
+export class CreateAccount extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            username = "",
-            password = "",
-            passwordconfirm = "",
-            country = "",
-            zipcode = 0,
+            username : "",
+            password : "",
+            passwordconfirm : "",
+            country : "",
+            zipcode : 0,
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit= this.handleSubmit.bind(this)
+    }
+
+    handleChange() {
+        return null
+    }
+
+    handleSubmit() {
+        return null
     }
 
     render() {
@@ -48,9 +56,8 @@ class CreateAccount extends Component {
                     <input type="number" className="form-control" id="zipcode" name="zipcode" ref="zipcode" value={this.state.zipcode} onChange={this.handleChange} required />
                     <div className="error" id="zipcode-error" />
                 </div>
+                <button className="btn btn-primary" onClick={this.handleSubmit}>Submit</button>
             </form>
         )
     }
 }
-
-export default CreateAccount
