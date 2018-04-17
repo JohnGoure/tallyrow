@@ -9,5 +9,6 @@ export const Menu = () => (
         <MenuItem row="row1" col="col1" navlink="stats" title="Stats" /> 
         <MenuItem row="row1" col="col3" navlink="additem" title="+" />
         <MenuItem row="row1" col="col2" navlink="todolist" title="List" />
+        <MenuItem row="row1" col="col4" navlink="create-account" title="Login" />
     </nav>
 )
