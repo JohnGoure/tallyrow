@@ -15,10 +15,11 @@ export class MenuItem extends Component  {
 
     render() {
         return(
-            <NavLink to={"/" + this.state.navlink} activeClassName="selected" 
-            className={this.grid}>
-            {this.state.title}
-            </NavLink>
+            <div className="nav row1 col3">
+                <NavLink to={"/" + this.state.navlink} activeClassName="selected" className={this.grid}>
+                {this.state.title}
+                </NavLink>
+            </div>
         )
     }
 }

@@ -5,18 +5,18 @@ let click = "trigger";
 const clicked = () => {
         if (click == "trigger") {
                 click = "trigger clicked";
-                newbox = !newbox;
+                box = !box;
         }
         else {
                 click = "trigger";
-                newbox = !newbox;
+                box = !box;
         }
 }
 
-let newbox = false;
+let box = false;
 
 export const Stats = () => (
         <div className={click} onClick={clicked()}>
-                {newbox ? <div className="box"></div> : null}
+                <div className="box"></div>
         </div>
 )
