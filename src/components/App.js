@@ -3,6 +3,7 @@ import { ToDoList } from './ToDoList'
 import { Stats } from './Stats'
 import { AddItem } from './AddItem'
 import { Menu } from './Menu'
+import { CreateAccount } from "./CreateAccount"
 
 export class App extends Component {
 
@@ -23,7 +24,7 @@ export class App extends Component {
     return (
       <div className="App">
         <Menu />
-        {(this.props.location.pathname === "/stats") ? <Stats /> : (this.props.location.pathname === "/todolist") ? <ToDoList items={this.state.allListItems}/> : <AddItem />}
+        {(this.props.location.pathname === "/stats") ? <Stats /> : (this.props.location.pathname === "/todolist") ? <ToDoList items={this.state.allListItems}/> : (this.props.location.pathname==="/create-account") ? <CreateAccount /> : <AddItem />}
       </div>
     );
   }
