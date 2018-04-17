@@ -23,7 +23,7 @@ export class App extends Component {
     return (
       <div className="App">
         <Menu />
-        {(this.props.location.pathname === "/") ? <Stats /> : (this.props.location.pathname === "/todolist") ? <ToDoList items={this.state.allListItems}/> : <AddItem />}
+        {(this.props.location.pathname === "/stats") ? <Stats /> : (this.props.location.pathname === "/todolist") ? <ToDoList items={this.state.allListItems}/> : <AddItem />}
       </div>
     );
   }

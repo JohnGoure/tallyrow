@@ -1,14 +1,11 @@
-import { NavLink } from 'react-router-dom'
 import React from 'react'
 import { MenuItem } from './MenuItem'
 
-const link=""
-const stats="Stats"
 
 export const Menu = () => (
     <nav className='menu'>
-        <MenuItem navlink="" title="Stats" />
-        <MenuItem navlink="add-item" title="Add Item" />
-        <MenuItem navlink="todolist" title="Todo List" />
+        <MenuItem row="row1" col="col1" navlink="stats" title="Stats" /> 
+        <MenuItem row="row1" col="col2" navlink="add-item" title=" Add Item" />
+        <MenuItem row="row1" col="col3" navlink="todolist" title=" Todo List" />
     </nav>
 )

@@ -6,13 +6,17 @@ export class MenuItem extends Component  {
         super(props);
         this.state = {
             navlink: this.props.navlink,
-            title: this.props.title
+            title: this.props.title,
+            col: this.props.col,
+            row: this.props.row
         }
+        this.grid = this.state.col + " " + this.state.row + " menu-item"
     }
+
     render() {
         return(
             <NavLink to={"/" + this.state.navlink} activeClassName="selected" 
-            className="menu-item">
+            className={this.grid}>
             {this.state.title}
             </NavLink>
         )
