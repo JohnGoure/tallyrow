@@ -14,50 +14,101 @@ export class CreateAccount extends Component {
         this.handleSubmit= this.handleSubmit.bind(this)
     }
 
-    handleChange() {
-        return null
+    handleChange(e) {
+        e.target.classList.add("active")
+
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+
+        this.showInputError(e.target.name);
     }
 
-    handleSubmit() {
-        return null
+    handleSubmit(e) {
+        e.preventDefault()
+
+        this.showFormErrors()
+    }
+
+    showFormErrors() {
+        const inputs = document.querySelectorAll("input")
+        let isFormValid = true
+
+        inputs.forEach(input => {
+            input.classList.add("active")
+            const isInputValid = this.showInputError(input.name);
+
+            if (isInputValid) {
+                isFormValid= false
+            }
+        })
+        return isFormValid;
+    }
+
+    showInputError(refName) {
+        const validity = this.refs[refName].validity
+        const label = document.getElementById(`${refName}Label`).textContent
+        const error = document.getElementById(`${refName}Error`)
+        const isPassword = refName.indexOf('password') !== -1
+        const isPasswordConfirm = refName === 'password-confirm'
+
+        if (isPasswordConfirm) {
+            if (this.refs.password.value !== this.refs.passwordconfirm.value) {
+                this.refs.passwordConfirm.setCustomValidity('Passwords do not match')
+            } else {
+                this.refs.passwordConfirm.setCustomValidity('')
+            }
+        }
+
+        if (!validity.valid) {
+            if (validity.valueMissing) {
+                error.textContent = `${label} is a required field`
+            } else if (validity.typeMismatch) {
+                error.textContent = `${label} should be a valid email address`
+            } else if (isPassword && validity.patternMismatch) {
+                error.textContent = `${label} should be longer than 4 chars`
+            } else if (isPasswordConfirm && validity.customError) {
+                error.textContent = 'Passwords do not match'
+            }
+            return false
+        }
+        error.textContent = '';
+        return true;
     }
 
     render() {
         return (
-            <form novalidate>
-                <div className="form-group">
-                    <label htmlFor="username" id="username-label">Username</label>
-                    <input type="email" className="form-control" id="username" name="username" ref="username" value={this.state.username} onChange={this.handleChange} required />
-                    <div className="error" id="username-error" />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="password" id="password-label">Password</label>
-                    <input type="password" className="form-control" id="password" name="password" ref="password" value={this.state.password} onChange={this.handleChange} patter=".{5,}" required />
-                    <div className="error" id="password-error" />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="password-confirm" id="password-confirm-label">Confirm Password</label>
-                    <input type="password" className="form-control" id="password-confirm" name="password-confirm" ref="password-cofnirm" value={this.state.passwordconfirm} onChange={this.handleChange} required />
-                    <div className="error" id="password-confirm-error" />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="country" id="country-label">Country</label>
-                    <input type="text" list="countries" className="form-control" id="country" name="country" ref="country" value={this.state.country} onChange={this.handleChange} required />
-                    <datalist id="countries">
-                        <option>Canada</option>
-                        <option>China</option>
-                        <option>United Kingdom</option>
-                        <option>United States</option>
-                    </datalist>
-                    <div className="error" id="country-error" />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="zipcode" id="zipcode-label">Zipcode</label>
-                    <input type="number" className="form-control" id="zipcode" name="zipcode" ref="zipcode" value={this.state.zipcode} onChange={this.handleChange} required />
-                    <div className="error" id="zipcode-error" />
-                </div>
-                <button className="btn btn-primary" onClick={this.handleSubmit}>Submit</button>
-            </form>
+            <div className="container">
+                <form noValidate>
+                    <div className="form-group">
+                        <label htmlFor="username" id="usernameLabel">Username</label>
+                        <input type="email" className="form-control" id="username" name="username" ref="username" value={this.state.username} onChange={this.handleChange} required />
+                        <div className="error" id="usernameError" />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="password" id="passwordLabel">Password</label>
+                        <input type="password" className="form-control" id="password" name="password" ref="password" value={this.state.password} onChange={this.handleChange} pattern=".{5,}" required />
+                        <div className="error" id="passwordError" />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="passwordconfirm" id="passwordconfirmLabel">Confirm Password</label>
+                        <input type="password" className="form-control" id="passwordconfirm" name="passwordconfirm" ref="passwordconfirm" value={this.state.passwordconfirm} onChange={this.handleChange} required />
+                        <div className="error" id="passwordcomfirmError" />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="country" id="countryLabel">Country</label>
+                        <input type="text" list="countries" className="form-control" id="country" name="country" ref="country" value={this.state.country} onChange={this.handleChange} required />
+                        <datalist id="countries">
+                            <option>Canada</option>
+                            <option>China</option>
+                            <option>United Kingdom</option>
+                            <option>United States</option>
+                        </datalist>
+                        <div className="error" id="countryError" />
+                    </div>
+                    <button className="btn btn-primary" onClick={this.handleSubmit}>Submit</button>
+                </form>
+            </div>
         )
     }
 }

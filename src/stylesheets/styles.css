@@ -1,6 +1,9 @@
+html, body {
+    height: 100%;
+}
+    
 body {
-    padding: 0px;
-    margin: 0px;
+    font-family: Helvetica Neue;
 }
 
 .App {
@@ -99,4 +102,35 @@ body {
 
 .col4 {
     grid-column: 4;
+}
+  
+.container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+.container form {
+    grid-column: 2;
+    grid-row: 1;
+    padding-top: 10px;
+}
+
+input.active:valid {
+    outline: none;
+}
+
+input.active:invalid {
+    box-shadow: 0 0 5px 1px red;
+}
+
+input:focus:invalid {
+    outline: none;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
 }
