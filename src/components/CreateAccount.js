@@ -95,17 +95,6 @@ export class CreateAccount extends Component {
                         <input type="password" className="form-control" id="passwordconfirm" name="passwordconfirm" ref="passwordconfirm" value={this.state.passwordconfirm} onChange={this.handleChange} required />
                         <div className="error" id="passwordcomfirmError" />
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="country" id="countryLabel">Country</label>
-                        <input type="text" list="countries" className="form-control" id="country" name="country" ref="country" value={this.state.country} onChange={this.handleChange} required />
-                        <datalist id="countries">
-                            <option>Canada</option>
-                            <option>China</option>
-                            <option>United Kingdom</option>
-                            <option>United States</option>
-                        </datalist>
-                        <div className="error" id="countryError" />
-                    </div>
                     <button className="btn btn-primary" onClick={this.handleSubmit}>Submit</button>
                 </form>
             </div>
