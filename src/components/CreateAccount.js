@@ -5,6 +5,7 @@ export class CreateAccount extends Component {
         super(props)
         this.state = {
             username : "",
+            usernameconfirm:"",
             password : "",
             passwordconfirm : "",
             country : "",
@@ -50,13 +51,23 @@ export class CreateAccount extends Component {
         const label = document.getElementById(`${refName}Label`).textContent
         const error = document.getElementById(`${refName}Error`)
         const isPassword = refName.indexOf('password') !== -1
-        const isPasswordConfirm = refName === 'password-confirm'
+        const isPasswordConfirm = refName === 'passwordconfirm'
+        const isUsername = refName.indexOf('username') !== -1
+        const isUsernameConfirm = refName === 'usernameconfirm'
 
         if (isPasswordConfirm) {
             if (this.refs.password.value !== this.refs.passwordconfirm.value) {
-                this.refs.passwordConfirm.setCustomValidity('Passwords do not match')
+                this.refs.passwordconfirm.setCustomValidity('Passwords do not match')
             } else {
-                this.refs.passwordConfirm.setCustomValidity('')
+                this.refs.passwordconfirm.setCustomValidity('')
+            }
+        }
+
+        if (isUsernameConfirm) {
+            if (this.refs.username.value !== this.refs.usernameconfirm.value) {
+                this.refs.usernameconfirm.setCustomValidity('Emails do not match')
+            } else {
+                this.refs.usernameconfirm.setCustomValidity('')
             }
         }
 
@@ -67,6 +78,8 @@ export class CreateAccount extends Component {
                 error.textContent = `${label} should be a valid email address`
             } else if (isPassword && validity.patternMismatch) {
                 error.textContent = `${label} should be longer than 4 chars`
+            } else if(isUsernameConfirm && validity.customError) {
+                error.textContent = 'Emails do not match'
             } else if (isPasswordConfirm && validity.customError) {
                 error.textContent = 'Passwords do not match'
             }
@@ -82,9 +95,14 @@ export class CreateAccount extends Component {
                 <h1 className="col2">Create an Account</h1>
                 <form noValidate>
                     <div className="form-group">
-                        <label htmlFor="username" id="usernameLabel">Username</label>
+                        <label htmlFor="username" id="usernameLabel">Email</label>
                         <input type="email" className="form-control" id="username" name="username" ref="username" value={this.state.username} onChange={this.handleChange} required />
                         <div className="error" id="usernameError" />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="usernameconfirm" id="usernameconfirmLabel">Confirm Email</label>
+                        <input type="email" className="form-control" id="usernameconfirm" name="usernameconfirm" ref="usernameconfirm" value={this.state.usernameconfirm} onChange={this.handleChange} required />
+                        <div className="error" id="usernameconfirmError" />
                     </div>
                     <div className="form-group">
                         <label htmlFor="password" id="passwordLabel">Password</label>
@@ -93,8 +111,8 @@ export class CreateAccount extends Component {
                     </div>
                     <div className="form-group">
                         <label htmlFor="passwordconfirm" id="passwordconfirmLabel">Confirm Password</label>
-                        <input type="password" className="form-control" id="passwordconfirm" name="passwordconfirm" ref="passwordconfirm" value={this.state.passwordconfirm} onChange={this.handleChange} required />
-                        <div className="error" id="passwordcomfirmError" />
+                        <input type="password" className="form-control" id="passwordconfirm" name="passwordconfirm" ref="passwordconfirm" value={this.state.passwordconfirm} onChange={this.handleChange} pattern=".{5,}" required />
+                        <div className="error" id="passwordconfirmError" />
                     </div>
                     <button className="btn btn-primary" onClick={this.handleSubmit}>Submit</button>
                 </form>
