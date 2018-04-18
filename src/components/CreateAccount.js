@@ -79,6 +79,7 @@ export class CreateAccount extends Component {
     render() {
         return (
             <div className="container">
+                <h1 className="col2">Create an Account</h1>
                 <form noValidate>
                     <div className="form-group">
                         <label htmlFor="username" id="usernameLabel">Username</label>
