@@ -10,7 +10,7 @@ export default class Link extends React.Component {
         super(props);
 
         this._onMouseEnter = this._onMouseEnter.bind(this);
-        this._onMouseLeave = this._OneMouseLeave.bind(this);
+        this._onMouseLeave = this._onMouseLeave.bind(this);
 
         this.state = {
             class: STATUS.NORMAL,
