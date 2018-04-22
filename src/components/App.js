@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { ToDoList } from './ToDoList'
+import { ToDoList } from './todolist/ToDoList'
 import { Stats } from './Stats'
 import { AddItem } from './AddItem'
 import { Menu } from './Menu'
-import { CreateAccount } from "./CreateAccount"
+import { CreateAccount } from "./loggedout/CreateAccount"
 
 export class App extends Component {
 
