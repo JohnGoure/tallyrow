@@ -10,13 +10,12 @@ export class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      allListItems: [
+      allListItems: 
         {
           date: "03-16-1987",
           item: 'Add to the list',
           completed: false
         }
-      ]
     }
   }
 
@@ -24,7 +23,7 @@ export class App extends Component {
     return (
       <div className="App">
         <Menu />
-        {(this.props.location.pathname === "/stats") ? <Stats /> : (this.props.location.pathname === "/todolist") ? <ToDoList items={this.state.allListItems}/> : (this.props.location.pathname==="/create-account") ? <CreateAccount /> : <AddItem />}
+        {(this.props.location.pathname === "/stats") ? <Stats /> : (this.props.location.pathname === "/todolist") ? <ToDoList date={this.state.allListItems.date} item={this.state.allListItems.item} completed={this.state.allListItems.completed}/> : (this.props.location.pathname==="/create-account") ? <CreateAccount /> : <AddItem />}
       </div>
     );
   }
