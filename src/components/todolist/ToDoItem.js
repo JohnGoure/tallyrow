@@ -1,6 +1,7 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
-export const ToDoItem = ({ date, item, completed }) => (
-    
+export const ToDoItem = (date, item, completed ) => (
+    <div className="to-do-item">
+        <h1>{date.date}</h1>
+    </div>
 )
