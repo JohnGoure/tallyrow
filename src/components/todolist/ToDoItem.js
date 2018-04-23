@@ -2,6 +2,8 @@ import React from 'react'
 
 export const ToDoItem = ( tasks ) => (
     <div className="to-do-item">
-        <h3> {tasks.tasks.completed ? "complete" : "incomplete"} {tasks.tasks.item} {tasks.tasks.date}</h3>
+        <p className="to-do-checkbox"><input type="checkbox"  name="checkbox" checked={tasks.tasks.completed}/></p>
+        <p className="to-do-title">{tasks.tasks.item}</p>
+        <p className="to-do-date">{tasks.tasks.date}</p>
     </div>
 )
